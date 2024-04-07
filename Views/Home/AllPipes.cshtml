@@ -1,0 +1,77 @@
+﻿@model List<tz_tubes.Models.Pipe>
+
+<h2>Список всех труб:</h2>
+
+<form asp-action="AllPipes" asp-controller="Home" method="get">
+    <div class="form-group">
+    <label>
+        <input type="checkbox" name="quality" />
+        Качество
+    </label>
+</div>
+    
+    <div class="form-group">
+        <label for="steelGrade">Фильтр по марке стали:</label>
+        <input type="number" class="form-control" id="steelGrade" name="steelGrade">
+    </div>
+
+    <div class="form-group">
+        <label for="size">Фильтр по размеру:</label>
+        <input type="number" class="form-control" id="size" name="size">
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Фильтр по весу:</label>
+        <input type="number" class="form-control" id="weight" name="weight">
+    </div>
+
+    <div class="form-group">
+        <label for="packetId">Фильтр по номеру пакета:</label>
+        <input type="number" class="form-control" id="packetId" name="packetId">
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary">Применить фильтр</button>
+</form>
+
+@if (Model.Any())
+{
+    <p>Итоговые данные:</p>
+    <p>Общее количество труб: @ViewBag.TotalPipes</p>
+    <p>Количество годных труб: @ViewBag.GoodPipes</p>
+    <p>Количество труб брака: @ViewBag.DefectPipes</p>
+    <p>Общий вес труб: @ViewBag.TotalWeight</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Номер трубы</th>
+                <th>Качество</th>
+                <th>Марка стали</th>
+                <th>Размер</th>
+                <th>Вес</th>
+                <th>Номер пакета</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pipe in Model)
+            {
+                <tr>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.PipeId</td>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.Quality</td>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.SteelGrade</td>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.Size</td>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.Weight</td>
+                    <td style="color: @(pipe.Quality == false ? "red" : "black")">@pipe.PacketId</td>
+                    <td><a asp-controller="Home" asp-action="DeletePipe" asp-route-id="@pipe.PipeId">Удалить</a></td>
+                    <td><a asp-controller="Home" asp-action="EditPipe" asp-route-id="@pipe.PipeId">Редактировать</a></td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Нет доступных труб</p>
+}

@@ -1,0 +1,13 @@
+﻿@model tz_tubes.Models.Pipe
+
+<h2>Удаление трубы</h2>
+
+<h3>Вы уверены, что хотите удалить трубу с номером @Model.PipeId?</h3>
+
+@using (Html.BeginForm("DeleteConfirmed", "Home", new { id = Model.PipeId }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+}

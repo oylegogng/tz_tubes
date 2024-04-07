@@ -1,0 +1,12 @@
+﻿@model tz_tubes.Models.Packet
+
+<h1>Добавить пакет</h1>
+
+<form asp-action="AddPacket" asp-controller="Home" method="post">
+    <div class="form-group">
+        <label asp-for="PacketNumber">Номер пакета:</label>
+        <input asp-for="PacketNumber" class="form-control" type="number" />
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить пакет</button>
+</form>
+

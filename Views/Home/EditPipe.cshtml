@@ -1,0 +1,43 @@
+﻿@model tz_tubes.Models.Pipe
+
+<h2>Редактирование трубы</h2>
+
+<<form asp-action="EditPipe" method="post">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" asp-for="PipeId" />
+    
+    @if (Model.PacketId == 0)
+    {
+        <div class="form-group">
+            <label asp-for="Quality">Quality:</label>
+            <input asp-for="Quality" type="checkbox" />
+            <span asp-validation-for="Quality" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="SteelGrade"></label>
+            <input asp-for="SteelGrade" class="form-control" />
+            <span asp-validation-for="SteelGrade" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Size">Size:</label>
+            <input asp-for="Size" type="number" step="any" />
+            <span asp-validation-for="Size" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Weight">Weight:</label>
+            <input asp-for="Weight" type="number" step="any" />
+            <span asp-validation-for="Weight" class="text-danger"></span>
+        </div>
+    }
+    
+    <div class="form-group">
+        <label asp-for="PacketId">Packet ID:</label>
+        <input asp-for="PacketId" type="number" />
+        <span asp-validation-for="PacketId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+

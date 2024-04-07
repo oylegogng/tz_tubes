@@ -1,0 +1,29 @@
+﻿@model List<Packet>
+
+@if (Model.Any())
+{
+    <h1>Все пакеты</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Номер пакета</th>
+                <th>Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var packet in Model)
+            {
+                <tr>
+                    <td>@packet.PacketNumber</td>
+                    <td>@packet.CreationDate</td>
+                    <td><a asp-controller="Home" asp-action="DeletePacket" asp-route-id="@packet.PacketId">Удалить</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Нет доступных пакетов</p>
+}

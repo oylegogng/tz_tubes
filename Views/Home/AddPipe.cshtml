@@ -1,0 +1,37 @@
+﻿@model tz_tubes.Models.Pipe
+
+<div class="text-center">
+    <h1 class="display-4">Добавить трубу</h1>
+</div>
+
+
+<div>
+    <h2>Добавление новой трубы:</h2>
+<form asp-action="AddPipe" asp-controller="Home" method="post">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label>
+            <input asp-for="Quality" type="checkbox" />
+            Качество
+        </label>
+    </div>
+    <div class="form-group">
+        <label asp-for="SteelGrade">Марка стали:</label>
+        <input asp-for="SteelGrade" class="form-control" type="number" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Size">Размер:</label>
+        <input asp-for="Size" class="form-control" type="number" step="any" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Weight">Вес:</label>
+        <input asp-for="Weight" class="form-control" type="number" step="any" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PacketId">Номер пакета:</label>
+        <input asp-for="PacketId" class="form-control" type="number" />
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить трубу</button>
+</form>
+
+</div>
